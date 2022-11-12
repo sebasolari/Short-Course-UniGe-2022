@@ -1,6 +1,6 @@
-% Generates 100 samples from a truncated Normal
+% Generates 200 samples from a truncated Normal
 t = [.5;1];
-x = normrnd(t(1),t(2),100,1);
+x = normrnd(t(1),t(2),200,1);
 while any(x<0)
     id    = find(x<0);
     x(id) = normrnd(t(1),t(2),numel(id),1);
@@ -38,14 +38,18 @@ figure
 subplot(2,2,1); plot(tout(1,:))
 subplot(2,2,2);
 histogram(tout(1,nbi:end),'Normalization','pdf'); hold on;
-plot(t(1),0,'o',t_mean(1),0,'^'); hold off;
-legend('histogram rwm','true','mean rwm');
+plot(t(1),0,'o',t_mean(1),0,'^',t_maxl(1),0,'s'); hold off;
+legend('histogram rwm','true','mean rwm','max logL');
 subplot(2,2,3); plot(tout(2,:))
 subplot(2,2,4);
 histogram(tout(2,nbi:end),'Normalization','pdf'); hold on;
-plot(t(2),0,'o',t_mean(2),0,'^'); hold off;
-legend('histogram rwm','true','mean rwm');
+plot(t(2),0,'o',t_mean(2),0,'^',t_maxl(2),0,'s'); hold off;
+legend('histogram rwm','true','mean rwm','max logL');
 
 % Plot scatter of parameters with likelihood
 figure
 scatter(tout(1,nbi:end),tout(2,nbi:end),16,lout(nbi:end),'filled')
+hold on;
+plot(t(1),t(2),'o',t_mean(1),t_mean(2),'^',t_maxl(1),t_maxl(2),'s');
+legend('MCMC sample','true','mean rwm','max logL');
+hold off;

@@ -33,7 +33,7 @@ qi      = sum((y-fi).^2)';
 fi      = fi(:,id);
 tt      = tt(:,id);
 qi      = qi(id);
-% Star iterations
+% Start iterations
 iter  = 0;
 evals = p+1;
 while iter<maxiter

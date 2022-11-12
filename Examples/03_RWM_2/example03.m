@@ -55,5 +55,5 @@ figure
 plot(x,f(t,x),'k-'); hold on;
 plot(x,y,'ro');
 plot(x,f(t_mean,x),'r-');
-plot(x,mod_ic,'r--');
-plot(x,y_ic,'r:'); hold off;
+plot(x,mod_ic','r--');
+plot(x,y_ic','r:'); hold off;
